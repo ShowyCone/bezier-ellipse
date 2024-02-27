@@ -58,4 +58,71 @@ function drawEllipse(
   ctx.fill()
   ctx.strokeStyle = 'black'
   ctx.stroke()
+
+  // Llamada a las funciones para obtener información
+  const ellipseInfo = getEllipseInfo(width, height)
+  const bezierInfo = getBezierInfo(centerX, centerY, width, height)
+  const bezierFormula = getBezierFormula(bezierInfo)
+
+  setAllInfo(ellipseInfo, bezierInfo, bezierFormula)
+
+  console.log('Información de la elipse:', ellipseInfo)
+  console.log('Información de la curva de Bézier:', bezierInfo)
+  console.log('Fórmula de la curva de Bézier:', bezierFormula)
+}
+
+function getEllipseInfo(radioX, radioY) {
+  return {
+    radioX,
+    radioY,
+    area: (Math.PI * radioX * radioY).toFixed(4),
+    circumference: (
+      2 *
+      Math.PI *
+      Math.sqrt((radioX ** 2 + radioY ** 2) / 2)
+    ).toFixed(4),
+  }
+}
+
+function getBezierInfo(centerX, centerY, width, height) {
+  const controlPointX = centerX + width / 2
+  const controlPointY = centerY + height / 2
+
+  return {
+    controlPointX,
+    controlPointY,
+    startPoint: { x: centerX, y: centerY - height / 2 },
+    endPoint: { x: centerX, y: centerY + height / 2 },
+  }
+}
+
+function getBezierFormula(bezierInfo) {
+  const { startPoint, controlPointX, controlPointY, endPoint } = bezierInfo
+
+  return `B(t) = (1 - t)^3 * (${startPoint.x}, ${startPoint.y}) + 3t(1 - t)^2 * (${controlPointX}, ${controlPointY}) + 3t^2(1 - t) * (${controlPointX}, ${controlPointY}) + t^3 * (${endPoint.x}, ${endPoint.y})`
+}
+
+function setAllInfo(ellipseInfo, bezierInfo, bezierData) {
+  const allEllipseToSet = document.querySelectorAll('.ellipse-info')
+  const allBezierToSet = document.querySelectorAll('.bezier-info')
+  const bezierToData = document.querySelector('.bezier-data')
+
+  let ellipseInfoInArr = [
+    ellipseInfo.area,
+    ellipseInfo.circumference,
+    ellipseInfo.radioX,
+    ellipseInfo.radioY,
+  ]
+
+  let bezierInfoInArr = [bezierInfo.controlPointX, bezierInfo.controlPointY]
+
+  allEllipseToSet.forEach((ellipseToSet, index) => {
+    ellipseToSet.innerHTML = ellipseInfoInArr[index]
+  })
+
+  allBezierToSet.forEach((bezierToSet, index) => {
+    bezierToSet.innerHTML = bezierInfoInArr[index]
+  })
+
+  bezierToData.innerHTML = bezierData
 }

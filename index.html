@@ -29,6 +29,18 @@
     justify-content: center;
     align-items: center;
   }
+
+  .section1,
+  .section2 {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+  }
+
+  .section2 p {
+    width: 100%;
+    text-align: center;
+  }
 </style>
 
 <body>
@@ -37,6 +49,26 @@
     <canvas id="miCanvas"></canvas>
   </div>
   <input id="xRange" type="range" min="10" max="500">
+  <div class="section1">
+    <p>
+      Información de la elipse: <br />
+      Área: <span class="ellipse-info"></span><br />
+      Circunferencia: <span class="ellipse-info"></span><br />
+      RadioX: <span class="ellipse-info"></span><br />
+      RadioY: <span class="ellipse-info"></span><br />
+    </p>
+    <p>
+      Información de la curva de Bézier: <br />
+      Punto de control X: <span class="bezier-info"></span><br />
+      Punto de control Y: <span class="bezier-info"></span><br />
+    </p>
+  </div>
+  <div class="section2">
+    <p>
+      Información de la fórmulade la curva de Bézier: <br />
+      <span class="bezier-data"></span>
+    </p>
+  </div>
   <script src="script.js"></script>
 </body>
 
