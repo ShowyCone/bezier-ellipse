@@ -13,45 +13,15 @@ function clearCanvas() {
   ctx.clearRect(0, 0, canvas.width, canvas.height)
 }
 
-/* Funciona pero es la funcion vanilla ellipse
-function ellipse(
-  radioX = defaultData.radioX,
-  radioY = defaultData.radioY,
-  color = 'blue'
-) {
-  clearCanvas()
-  defaultData.radioX = radioX
-  defaultData.radioY = radioY
-
-  ctx.beginPath()
-  ctx.ellipse(
-    canvas.width / 2,
-    canvas.height / 2,
-    radioX,
-    radioY,
-    0,
-    0,
-    Math.PI * 2
-  )
-  ctx.fillStyle = color
-  ctx.fill()
-  ctx.strokeStyle = 'black'
-  ctx.stroke()
-}
-*/
-
 document.getElementById('xRange').addEventListener('input', (event) => {
-  //ellipse(event.target.value)
   drawEllipse(undefined, undefined, event.target.value)
 })
 
 document.getElementById('yRange').addEventListener('input', (event) => {
-  //ellipse(undefined, event.target.value)
   drawEllipse(undefined, undefined, undefined, event.target.value)
 })
 
 drawEllipse(undefined, undefined, undefined, undefined)
-//ellipse(120, 50, 'blue')
 
 function drawEllipse(
   centerX = canvas.width / 2,
