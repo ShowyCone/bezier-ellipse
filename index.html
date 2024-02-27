@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Elipse en Canvas</title>
+</head>
+<style>
+  body {
+    display: grid;
+    place-items: center;
+    height: 100%;
+  }
+
+  canvas {
+    background-color: black;
+    border: 4px solid blue;
+  }
+
+  .vertical {
+    -webkit-appearance: slider-vertical;
+    writing-mode: bt-lr;
+    /* bottom-to-top and left-to-right */
+    height: 150px;
+    /* puedes ajustar esto según tus necesidades */
+  }
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
+
+<body>
+  <div class="container">
+    <input id="yRange" type="range" class="vertical" min="10" max="400">
+    <canvas id="miCanvas"></canvas>
+  </div>
+  <input id="xRange" type="range" min="10" max="500">
+  <script src="script.js"></script>
+</body>
+
+</html>
